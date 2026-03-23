@@ -1,0 +1,497 @@
+Loaded results for 9 assets
+
+Processing data/raw/AAPL.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1573 (56.5%)
+ DOWN(0): 1213 (43.5%)
+ Imbalance ratio: 1.30:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+ Preprocessed: AAPL
+
+Processing data/raw/MSFT.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1608 (57.7%)
+ DOWN(0): 1178 (42.3%)
+ Imbalance ratio: 1.37:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+ Preprocessed: MSFT
+
+Processing data/raw/GOOGL.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1560 (56.0%)
+ DOWN(0): 1226 (44.0%)
+ Imbalance ratio: 1.27:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+ Preprocessed: GOOGL
+
+Processing data/raw/AMZN.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1516 (54.4%)
+ DOWN(0): 1270 (45.6%)
+ Imbalance ratio: 1.19:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+ Preprocessed: AMZN
+
+Processing data/raw/TSLA.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1455 (52.2%)
+ DOWN(0): 1331 (47.8%)
+ Imbalance ratio: 1.09:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+ Preprocessed: TSLA
+
+Processing data/raw/NVDA.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1622 (58.2%)
+ DOWN(0): 1164 (41.8%)
+ Imbalance ratio: 1.39:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+ Preprocessed: NVDA
+
+Processing data/raw/META.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1523 (54.7%)
+ DOWN(0): 1263 (45.3%)
+ Imbalance ratio: 1.21:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+ Preprocessed: META
+
+Processing data/raw/BTC.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 2212 (54.6%)
+ DOWN(0): 1839 (45.4%)
+ Imbalance ratio: 1.20:1
+
+Data after cleaning:
+ Rows: 4051 -> 4017
+ Features used: 33
+
+Train/Test split:
+ Train: 3213 samples
+ Test: 804 samples
+Feature scaling applied.
+ Preprocessed: BTC
+
+Processing data/raw/ETH.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1575 (52.4%)
+ DOWN(0): 1433 (47.6%)
+ Imbalance ratio: 1.10:1
+
+Data after cleaning:
+ Rows: 3008 -> 2974
+ Features used: 33
+
+Train/Test split:
+ Train: 2379 samples
+ Test: 595 samples
+Feature scaling applied.
+ Preprocessed: ETH
+
+Starting GA optimization...
+
+================================================================================
+Genetic Algorithm - Strategy Optimization
+================================================================================
+
+Population size: 50
+Generations: 100
+================================================================================
+
+Using XGBoost probabilities for AAPL GA
+
+============================================================
+Genetic Algorithm - AAPL
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 551 days
+ Gen   1/100 | Best sharpe:  1.841 | Mean Sharpe:  0.990 | Trades:  30 | 
+ Gen  11/100 | Best sharpe:  2.023 | Mean Sharpe:  1.975 | Trades:  30 | 
+ Gen  21/100 | Best sharpe:  2.023 | Mean Sharpe:  1.924 | Trades:  30 | 
+ Gen  31/100 | Best sharpe:  2.023 | Mean Sharpe:  1.887 | Trades:  30 | 
+ Gen  41/100 | Best sharpe:  2.023 | Mean Sharpe:  1.925 | Trades:  30 | 
+ Gen  51/100 | Best sharpe:  2.023 | Mean Sharpe:  1.908 | Trades:  30 | 
+ Gen  61/100 | Best sharpe:  2.023 | Mean Sharpe:  1.910 | Trades:  30 | 
+ Gen  71/100 | Best sharpe:  2.023 | Mean Sharpe:  1.925 | Trades:  30 | 
+ Gen  81/100 | Best sharpe:  2.023 | Mean Sharpe:  1.934 | Trades:  30 | 
+ Gen  91/100 | Best sharpe:  2.023 | Mean Sharpe:  1.849 | Trades:  30 | 
+ Gen 100/100 | Best sharpe:  2.023 | Mean Sharpe:  1.952 | Trades:  30 | 
+
+------------------------------------------------------------
+RESULTS - AAPL
+------------------------------------------------------------
+Best strategy: entry_threshold=0.53 stop_loss=9.7% take_profit=8.7% holding_days=5d 
+Sharpe Ratio: 2.0227 (B&H): 0.6793
+Total Return: 71.17% (B&H): 38.08%
+Win Rate: 73.3%
+Trades: 30
+Max drawdown: 3.67%
+Saved: results/figures/AAPL/equity_curve.png
+
+Using XGBoost probabilities for MSFT GA
+
+============================================================
+Genetic Algorithm - MSFT
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 551 days
+ Gen   1/100 | Best sharpe:  1.492 | Mean Sharpe:  0.483 | Trades:   6 | 
+ Gen  11/100 | Best sharpe:  1.492 | Mean Sharpe:  1.455 | Trades:   6 | 
+ Gen  21/100 | Best sharpe:  1.496 | Mean Sharpe:  1.209 | Trades:  11 | 
+ Gen  31/100 | Best sharpe:  1.496 | Mean Sharpe:  1.280 | Trades:  11 | 
+ Gen  41/100 | Best sharpe:  1.496 | Mean Sharpe:  1.349 | Trades:  11 | 
+ Gen  51/100 | Best sharpe:  1.511 | Mean Sharpe:  1.378 | Trades:  11 | 
+ Gen  61/100 | Best sharpe:  1.511 | Mean Sharpe:  1.331 | Trades:  11 | 
+ Gen  71/100 | Best sharpe:  1.715 | Mean Sharpe:  1.493 | Trades:   8 | 
+ Gen  81/100 | Best sharpe:  1.715 | Mean Sharpe:  1.602 | Trades:   8 | 
+ Gen  91/100 | Best sharpe:  1.801 | Mean Sharpe:  1.495 | Trades:   9 | 
+ Gen 100/100 | Best sharpe:  1.801 | Mean Sharpe:  1.643 | Trades:   9 | 
+
+------------------------------------------------------------
+RESULTS - MSFT
+------------------------------------------------------------
+Best strategy: entry_threshold=0.57 stop_loss=10.0% take_profit=2.1% holding_days=5d 
+Sharpe Ratio: 1.8012 (B&H): 0.4469
+Total Return: 17.71% (B&H): 18.08%
+Win Rate: 100.0%
+Trades: 9
+Max drawdown: 0.00%
+Saved: results/figures/MSFT/equity_curve.png
+
+Using XGBoost probabilities for GOOGL GA
+
+============================================================
+Genetic Algorithm - GOOGL
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 551 days
+ Gen   1/100 | Best sharpe:  1.141 | Mean Sharpe:  0.528 | Trades:  28 | 
+ Gen  11/100 | Best sharpe:  1.268 | Mean Sharpe:  1.189 | Trades:  16 | 
+ Gen  21/100 | Best sharpe:  1.272 | Mean Sharpe:  1.165 | Trades:  13 | 
+ Gen  31/100 | Best sharpe:  1.272 | Mean Sharpe:  1.211 | Trades:  13 | 
+ Gen  41/100 | Best sharpe:  1.272 | Mean Sharpe:  1.234 | Trades:  13 | 
+ Gen  51/100 | Best sharpe:  1.272 | Mean Sharpe:  1.161 | Trades:  13 | 
+ Gen  61/100 | Best sharpe:  1.272 | Mean Sharpe:  1.197 | Trades:  13 | 
+ Gen  71/100 | Best sharpe:  1.272 | Mean Sharpe:  1.235 | Trades:  13 | 
+ Gen  81/100 | Best sharpe:  1.272 | Mean Sharpe:  1.256 | Trades:  13 | 
+ Gen  91/100 | Best sharpe:  1.272 | Mean Sharpe:  1.182 | Trades:  13 | 
+ Gen 100/100 | Best sharpe:  1.272 | Mean Sharpe:  1.214 | Trades:  13 | 
+
+------------------------------------------------------------
+RESULTS - GOOGL
+------------------------------------------------------------
+Best strategy: entry_threshold=0.57 stop_loss=7.9% take_profit=19.9% holding_days=4d 
+Sharpe Ratio: 1.2725 (B&H): 1.5801
+Total Return: 23.29% (B&H): 151.68%
+Win Rate: 69.2%
+Trades: 13
+Max drawdown: 3.38%
+Saved: results/figures/GOOGL/equity_curve.png
+
+Using Logistic Regression probabilities for AMZN GA
+
+============================================================
+Genetic Algorithm - AMZN
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 551 days
+ Gen   1/100 | Best sharpe:  0.394 | Mean Sharpe:  0.067 | Trades:   4 | 
+ Gen  11/100 | Best sharpe:  0.995 | Mean Sharpe:  0.946 | Trades:   3 | 
+ Gen  21/100 | Best sharpe:  0.995 | Mean Sharpe:  0.876 | Trades:   3 | 
+ Gen  31/100 | Best sharpe:  0.995 | Mean Sharpe:  0.946 | Trades:   3 | 
+ Gen  41/100 | Best sharpe:  0.995 | Mean Sharpe:  0.943 | Trades:   3 | 
+ Gen  51/100 | Best sharpe:  0.995 | Mean Sharpe:  0.902 | Trades:   3 | 
+ Gen  61/100 | Best sharpe:  0.995 | Mean Sharpe:  0.900 | Trades:   3 | 
+ Gen  71/100 | Best sharpe:  0.995 | Mean Sharpe:  0.927 | Trades:   3 | 
+ Gen  81/100 | Best sharpe:  0.995 | Mean Sharpe:  0.940 | Trades:   3 | 
+ Gen  91/100 | Best sharpe:  0.995 | Mean Sharpe:  0.902 | Trades:   3 | 
+ Gen 100/100 | Best sharpe:  0.995 | Mean Sharpe:  0.898 | Trades:   3 | 
+
+------------------------------------------------------------
+RESULTS - AMZN
+------------------------------------------------------------
+Best strategy: entry_threshold=0.51 stop_loss=4.9% take_profit=6.6% holding_days=9d 
+Sharpe Ratio: 0.9948 (B&H): 0.8994
+Total Return: 15.06% (B&H): 64.83%
+Win Rate: 100.0%
+Trades: 3
+Max drawdown: 0.00%
+Saved: results/figures/AMZN/equity_curve.png
+
+Using XGBoost probabilities for TSLA GA
+
+============================================================
+Genetic Algorithm - TSLA
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 551 days
+ Gen   1/100 | Best sharpe:  1.813 | Mean Sharpe:  0.947 | Trades:  36 | 
+ Gen  11/100 | Best sharpe:  2.303 | Mean Sharpe:  2.226 | Trades:  37 | 
+ Gen  21/100 | Best sharpe:  2.370 | Mean Sharpe:  2.131 | Trades:  37 | 
+ Gen  31/100 | Best sharpe:  2.370 | Mean Sharpe:  2.198 | Trades:  37 | 
+ Gen  41/100 | Best sharpe:  2.370 | Mean Sharpe:  2.234 | Trades:  37 | 
+ Gen  51/100 | Best sharpe:  2.370 | Mean Sharpe:  2.197 | Trades:  37 | 
+ Gen  61/100 | Best sharpe:  2.370 | Mean Sharpe:  2.206 | Trades:  37 | 
+ Gen  71/100 | Best sharpe:  2.370 | Mean Sharpe:  2.201 | Trades:  37 | 
+ Gen  81/100 | Best sharpe:  2.370 | Mean Sharpe:  2.291 | Trades:  37 | 
+ Gen  91/100 | Best sharpe:  2.370 | Mean Sharpe:  2.221 | Trades:  37 | 
+ Gen 100/100 | Best sharpe:  2.370 | Mean Sharpe:  2.232 | Trades:  37 | 
+
+------------------------------------------------------------
+RESULTS - TSLA
+------------------------------------------------------------
+Best strategy: entry_threshold=0.51 stop_loss=6.5% take_profit=4.2% holding_days=7d 
+Sharpe Ratio: 2.3698 (B&H): 0.7567
+Total Return: 326.07% (B&H): 83.70%
+Win Rate: 78.4%
+Trades: 37
+Max drawdown: 9.13%
+Saved: results/figures/TSLA/equity_curve.png
+
+Using Logistic Regression probabilities for NVDA GA
+
+============================================================
+Genetic Algorithm - NVDA
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 551 days
+ Gen   1/100 | Best sharpe:  1.624 | Mean Sharpe:  0.603 | Trades:  14 | 
+ Gen  11/100 | Best sharpe:  1.987 | Mean Sharpe:  1.880 | Trades:  21 | 
+ Gen  21/100 | Best sharpe:  1.987 | Mean Sharpe:  1.806 | Trades:  21 | 
+ Gen  31/100 | Best sharpe:  1.987 | Mean Sharpe:  1.818 | Trades:  21 | 
+ Gen  41/100 | Best sharpe:  1.987 | Mean Sharpe:  1.833 | Trades:  21 | 
+ Gen  51/100 | Best sharpe:  1.987 | Mean Sharpe:  1.858 | Trades:  21 | 
+ Gen  61/100 | Best sharpe:  1.987 | Mean Sharpe:  1.867 | Trades:  21 | 
+ Gen  71/100 | Best sharpe:  1.987 | Mean Sharpe:  1.824 | Trades:  21 | 
+ Gen  81/100 | Best sharpe:  1.987 | Mean Sharpe:  1.916 | Trades:  21 | 
+ Gen  91/100 | Best sharpe:  1.987 | Mean Sharpe:  1.826 | Trades:  21 | 
+ Gen 100/100 | Best sharpe:  1.987 | Mean Sharpe:  1.860 | Trades:  21 | 
+
+------------------------------------------------------------
+RESULTS - NVDA
+------------------------------------------------------------
+Best strategy: entry_threshold=0.51 stop_loss=6.2% take_profit=3.0% holding_days=5d 
+Sharpe Ratio: 1.9869 (B&H): 1.5053
+Total Return: 67.73% (B&H): 287.95%
+Win Rate: 76.2%
+Trades: 21
+Max drawdown: 5.47%
+Saved: results/figures/NVDA/equity_curve.png
+
+Using Logistic Regression probabilities for META GA
+
+============================================================
+Genetic Algorithm - META
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 551 days
+ Gen   1/100 | Best sharpe:  1.491 | Mean Sharpe:  0.561 | Trades:   7 | 
+ Gen  11/100 | Best sharpe:  1.859 | Mean Sharpe:  1.799 | Trades:   9 | 
+ Gen  21/100 | Best sharpe:  1.859 | Mean Sharpe:  1.681 | Trades:   9 | 
+ Gen  31/100 | Best sharpe:  1.859 | Mean Sharpe:  1.614 | Trades:   9 | 
+ Gen  41/100 | Best sharpe:  1.859 | Mean Sharpe:  1.809 | Trades:   9 | 
+ Gen  51/100 | Best sharpe:  1.859 | Mean Sharpe:  1.663 | Trades:   9 | 
+ Gen  61/100 | Best sharpe:  1.859 | Mean Sharpe:  1.667 | Trades:   9 | 
+ Gen  71/100 | Best sharpe:  1.859 | Mean Sharpe:  1.721 | Trades:   9 | 
+ Gen  81/100 | Best sharpe:  1.859 | Mean Sharpe:  1.715 | Trades:   9 | 
+ Gen  91/100 | Best sharpe:  1.859 | Mean Sharpe:  1.698 | Trades:   9 | 
+ Gen 100/100 | Best sharpe:  1.859 | Mean Sharpe:  1.696 | Trades:   9 | 
+
+------------------------------------------------------------
+RESULTS - META
+------------------------------------------------------------
+Best strategy: entry_threshold=0.51 stop_loss=5.1% take_profit=2.0% holding_days=5d 
+Sharpe Ratio: 1.8591 (B&H): 1.1306
+Total Return: 21.71% (B&H): 115.35%
+Win Rate: 88.9%
+Trades: 9
+Max drawdown: 0.14%
+Saved: results/figures/META/equity_curve.png
+
+Using XGBoost probabilities for BTC GA
+
+============================================================
+Genetic Algorithm - BTC
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 804 days
+ Gen   1/100 | Best sharpe:  1.284 | Mean Sharpe:  0.677 | Trades:  14 | 
+ Gen  11/100 | Best sharpe:  1.508 | Mean Sharpe:  1.476 | Trades:  32 | 
+ Gen  21/100 | Best sharpe:  1.508 | Mean Sharpe:  1.383 | Trades:  32 | 
+ Gen  31/100 | Best sharpe:  1.658 | Mean Sharpe:  1.577 | Trades:  33 | 
+ Gen  41/100 | Best sharpe:  1.658 | Mean Sharpe:  1.563 | Trades:  33 | 
+ Gen  51/100 | Best sharpe:  1.658 | Mean Sharpe:  1.538 | Trades:  33 | 
+ Gen  61/100 | Best sharpe:  1.658 | Mean Sharpe:  1.588 | Trades:  33 | 
+ Gen  71/100 | Best sharpe:  1.658 | Mean Sharpe:  1.588 | Trades:  33 | 
+ Gen  81/100 | Best sharpe:  1.658 | Mean Sharpe:  1.626 | Trades:  33 | 
+ Gen  91/100 | Best sharpe:  1.658 | Mean Sharpe:  1.542 | Trades:  33 | 
+ Gen 100/100 | Best sharpe:  1.658 | Mean Sharpe:  1.609 | Trades:  33 | 
+
+------------------------------------------------------------
+RESULTS - BTC
+------------------------------------------------------------
+Best strategy: entry_threshold=0.50 stop_loss=7.6% take_profit=9.7% holding_days=1d 
+Sharpe Ratio: 1.6577 (B&H): 0.7870
+Total Return: 56.24% (B&H): 110.22%
+Win Rate: 78.8%
+Trades: 33
+Max drawdown: 4.60%
+Saved: results/figures/BTC/equity_curve.png
+
+Using XGBoost probabilities for ETH GA
+
+============================================================
+Genetic Algorithm - ETH
+============================================================
+
+Population size: 50 | Generations: 100
+Validation window: 595 days
+ Gen   1/100 | Best sharpe:  1.519 | Mean Sharpe:  0.850 | Trades:  79 | 
+ Gen  11/100 | Best sharpe:  1.775 | Mean Sharpe:  1.672 | Trades:  93 | 
+ Gen  21/100 | Best sharpe:  1.790 | Mean Sharpe:  1.627 | Trades:  93 | 
+ Gen  31/100 | Best sharpe:  1.790 | Mean Sharpe:  1.668 | Trades:  93 | 
+ Gen  41/100 | Best sharpe:  1.790 | Mean Sharpe:  1.700 | Trades:  93 | 
+ Gen  51/100 | Best sharpe:  1.790 | Mean Sharpe:  1.685 | Trades:  93 | 
+ Gen  61/100 | Best sharpe:  1.790 | Mean Sharpe:  1.676 | Trades:  93 | 
+ Gen  71/100 | Best sharpe:  1.790 | Mean Sharpe:  1.661 | Trades:  93 | 
+ Gen  81/100 | Best sharpe:  1.790 | Mean Sharpe:  1.712 | Trades:  93 | 
+ Gen  91/100 | Best sharpe:  1.790 | Mean Sharpe:  1.684 | Trades:  93 | 
+ Gen 100/100 | Best sharpe:  1.790 | Mean Sharpe:  1.720 | Trades:  93 | 
+
+------------------------------------------------------------
+RESULTS - ETH
+------------------------------------------------------------
+Best strategy: entry_threshold=0.51 stop_loss=1.6% take_profit=3.1% holding_days=7d 
+Sharpe Ratio: 1.7905 (B&H): 0.0135
+Total Return: 284.19% (B&H): -32.70%
+Win Rate: 51.6%
+Trades: 93
+Max drawdown: 17.14%
+Saved: results/figures/ETH/equity_curve.png
+Saved GA results to results/ga_results.pkl
+Saved: results/figures/AAPL/ga_convergence.png
+Saved: results/figures/MSFT/ga_convergence.png
+Saved: results/figures/GOOGL/ga_convergence.png
+Saved: results/figures/AMZN/ga_convergence.png
+Saved: results/figures/TSLA/ga_convergence.png
+Saved: results/figures/NVDA/ga_convergence.png
+Saved: results/figures/META/ga_convergence.png
+Saved: results/figures/BTC/ga_convergence.png
+Saved: results/figures/ETH/ga_convergence.png
+Saved: results/figures/ga_vs_buyhold.png
+
+==========================================================================================
+GA OPTIMIZATION SUMMARY
+==========================================================================================
+Asset    | Best Sharpe  | B&H Sharpe | Return % | B&H Return % | Win Rate % |  Trades | Max DD % |    Outperform
+------------------------------------------------------------------------------------------
+AAPL          2.0227    0.6793   71.17   38.08    73.3     30   3.67          Yes
+MSFT          1.8012    0.4469   17.71   18.08   100.0      9   0.00          Yes
+GOOGL         1.2725    1.5801   23.29  151.68    69.2     13   3.38           No
+AMZN          0.9948    0.8994   15.06   64.83   100.0      3   0.00          Yes
+TSLA          2.3698    0.7567  326.07   83.70    78.4     37   9.13          Yes
+NVDA          1.9869    1.5053   67.73  287.95    76.2     21   5.47          Yes
+META          1.8591    1.1306   21.71  115.35    88.9      9   0.14          Yes
+BTC           1.6577    0.7870   56.24  110.22    78.8     33   4.60          Yes
+ETH           1.7905    0.0135  284.19  -32.70    51.6     93  17.14          Yes
+==========================================================================================
+
+================================================================================
+
+GA optimization complete
+================================================================================
+Results saved to: results/ga_results.pkl
+Figures saved to: results/figures/
+  - Per-asset convergence plots: results/figures/[asset]/ga_convergence.png
+ - Cross-asset comparison: results/figures/ga_vs_buyhold.png

@@ -1,0 +1,199 @@
+Loaded results for 9 assets
+
+Gnerating SHAP for AAPL
+
+Processing data/raw/AAPL.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1573 (56.5%)
+ DOWN(0): 1213 (43.5%)
+ Imbalance ratio: 1.30:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+Using model: XGBoost
+saved: results/figures/AAPL/shap_summary.png
+
+Gnerating SHAP for MSFT
+
+Processing data/raw/MSFT.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1608 (57.7%)
+ DOWN(0): 1178 (42.3%)
+ Imbalance ratio: 1.37:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+Using model: XGBoost
+saved: results/figures/MSFT/shap_summary.png
+
+Gnerating SHAP for GOOGL
+
+Processing data/raw/GOOGL.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1560 (56.0%)
+ DOWN(0): 1226 (44.0%)
+ Imbalance ratio: 1.27:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+Using model: XGBoost
+saved: results/figures/GOOGL/shap_summary.png
+
+Gnerating SHAP for AMZN
+
+Processing data/raw/AMZN.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1516 (54.4%)
+ DOWN(0): 1270 (45.6%)
+ Imbalance ratio: 1.19:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+Using model: Logistic Regression
+saved: results/figures/AMZN/shap_summary.png
+
+Gnerating SHAP for TSLA
+
+Processing data/raw/TSLA.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1455 (52.2%)
+ DOWN(0): 1331 (47.8%)
+ Imbalance ratio: 1.09:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+Using model: XGBoost
+saved: results/figures/TSLA/shap_summary.png
+
+Gnerating SHAP for NVDA
+
+Processing data/raw/NVDA.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1622 (58.2%)
+ DOWN(0): 1164 (41.8%)
+ Imbalance ratio: 1.39:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+Using model: Logistic Regression
+saved: results/figures/NVDA/shap_summary.png
+
+Gnerating SHAP for META
+
+Processing data/raw/META.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1523 (54.7%)
+ DOWN(0): 1263 (45.3%)
+ Imbalance ratio: 1.21:1
+
+Data after cleaning:
+ Rows: 2786 -> 2752
+ Features used: 33
+
+Train/Test split:
+ Train: 2201 samples
+ Test: 551 samples
+Feature scaling applied.
+Using model: Logistic Regression
+saved: results/figures/META/shap_summary.png
+
+Gnerating SHAP for BTC
+
+Processing data/raw/BTC.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 2212 (54.6%)
+ DOWN(0): 1839 (45.4%)
+ Imbalance ratio: 1.20:1
+
+Data after cleaning:
+ Rows: 4051 -> 4017
+ Features used: 33
+
+Train/Test split:
+ Train: 3213 samples
+ Test: 804 samples
+Feature scaling applied.
+Using model: XGBoost
+saved: results/figures/BTC/shap_summary.png
+
+Gnerating SHAP for ETH
+
+Processing data/raw/ETH.csv
+Engineering features...
+Features engineered: 33
+
+Target distribution:
+ UP(1): 1575 (52.4%)
+ DOWN(0): 1433 (47.6%)
+ Imbalance ratio: 1.10:1
+
+Data after cleaning:
+ Rows: 3008 -> 2974
+ Features used: 33
+
+Train/Test split:
+ Train: 2379 samples
+ Test: 595 samples
+Feature scaling applied.
+Using model: XGBoost
+saved: results/figures/ETH/shap_summary.png
