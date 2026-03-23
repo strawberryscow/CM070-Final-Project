@@ -6,6 +6,8 @@ import shap
 from pathlib import Path
 import sys
 
+#flask web app for fa bot 
+
 #add src to Path
 project_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(project_root / "src"))
@@ -13,46 +15,6 @@ sys.path.insert(0, str(project_root / "src"))
 from src.preprocessing import FinancialPreprocessor
 from src.genetic_algorithm import Chromosome, GAResult
 
-# @dataclass
-# class Chromosome:
-#     genes: np.ndarray
-#     fitness: float = 0.0
-#     trades: int = 0.0
-#     win_trade: float = 0.0
-#     total_return: float = 0.0
-#     max_drawdown: float = 0.0
-
-#     @property 
-#     def entry_threshold(self):
-#         return self.genes[0]
-    
-#     @property
-#     def stop_loss_pct(self):
-#         return self.genes[1]
-    
-#     @property
-#     def take_profit(self):
-#         return self.genes[2]
-    
-#     @property
-#     def holding_days(self):
-#         return int(self.genes[3])
-    
-# @dataclass
-# class GAResult:
-#     best_chromosome: Optional[Chromosome] = None
-#     best_fitness: float = 0.0
-#     best_sharpe: float = 0.0
-#     best_return: float = 0.0
-#     best_win_rate: float = 0.0
-#     best_trades: int = 0.0
-#     best_entry_threshold: float = 0.5
-#     best_stop_loss: float = 0.05
-#     best_take_profit: float = 0.10
-#     best_win_rate: float = 0.5
-#     buyhold_sharpe: float = 0.0
-#     buyhold_return: float = 0.0
-#     convergence_history: list = field(default_factory=list)
 
 app = Flask(__name__)
 
@@ -61,11 +23,12 @@ MODELS_PATH = "results/all_assets_results_3d.pkl"
 GA_PATH = "results/ga_results.pkl"
 
 with open(MODELS_PATH, 'rb') as f:
-    all_models = pickle.load(f)
+    all_models = pickle.load(f)  #assets:{models, results, optimal_thresholds, feature_names}
 
 with open(GA_PATH, 'rb') as f:
-    ga_results = pickle.load(f)
+    ga_results = pickle.load(f) #asset: GAResult
 
+#t supported assets - used for input validation for all endpts
 ASSETS = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA", "META", "BTC", "ETH"]
 
 def get_best_model(asset_name):
@@ -90,21 +53,22 @@ def get_latest_features(asset_name):
     #get the last row of test data(most recent)
     X_test = data["X_test"]
     feature_names = data["feature_names"]
-
+#returns a dataframe for predict_proba
     return X_test.iloc[-1:], feature_names
 
 def generate_shap_explanation(asset_name, model_name, model, features, feature_names):
     #generate shap explainability for a prediction
     #returns top 3 features with thier shap values 
     try:
-        if "XBGoost" in model_name or "xgb" in str(type(model)).lower():
+        if "XBGoost" in model_name or "xgb" in str(type(model)).lower():  #select the appropriate shap explainer
             explainer = shap.TreeExplainer(model)
         else:
-            explainer = shap.LinearExplainer(model, features)
+            explainer = shap.LinearExplainer(model, features) 
         
         shap_values = explainer(features)
 
-        if hasattr(shap_values, 'values'):
+#extract shap value array for positive class
+        if hasattr(shap_values, 'values'):    
             if len(shap_values.values.shape) > 2:
                 features_importance = shap_values.values[0, :, 1]
             else:
@@ -117,15 +81,15 @@ def generate_shap_explanation(asset_name, model_name, model, features, feature_n
         top_features = []
         for idx in top_indices:
             top_features.append({
-                'name' : feature_names[idx],
-                'value': float(features.iloc[0, idx]),
-                'shap_value': float(features_importance[idx])
+                'name' : feature_names[idx],  
+                'value': float(features.iloc[0, idx]),  #actual feature value 
+                'shap_value': float(features_importance[idx])  #postitve puse=hes UP, negative = pushed down
             })
         return top_features
     
     except Exception as e:
         print(f"SHAP explanation error for {asset_name}: {e}")
-
+#returns a safe fallback so the dashboard can still redner 
         return [
             {'name': 'RSI', 'value':0.0, 'shap_value':0.0},
             {'name': 'EMA_diff', 'value':0.0, 'shap_value':0.0},
@@ -137,31 +101,22 @@ def get_ga_strategy(asset_name):
 
     try:
         ga_result = ga_results[asset_name]
-        best = ga_result.best_chromosome
+        best = ga_result.best_chromosome  #best evolved chromosome 
 
         return {
             'entry_threshold': float(best.entry_threshold),
-            'stop_loss': float(best.stop_loss_pct) * 100,
+            'stop_loss': float(best.stop_loss_pct) * 100,  #convert to %
             'take_profit': float(best.take_profit_pct) * 100,
             'holding_days': int(best.holding_days),
-            'sharpe_ratio': float(best.fitness),
+            'sharpe_ratio': float(best.fitness),  #fintess = sharpe ratio
             'win_rate': float(best.win_rate) * 100,
             'total_return': float(best.total_return) * 100,
             'buyhold_sharpe': float(ga_result.benchmark_sharpe),
             'buyhold_return': float(ga_result.benchmark_return) * 100,
-
-            # 'entry_threshold': ga_result.get('best_entry_threshold', 0.5),
-            # 'stop_loss': ga_result.get('best_stop_loss', 0.05) * 100,
-            # 'take_profit': ga_result.get('best_take_profit', 0.10) * 100,
-            # 'holding_days': int(ga_result.get('best_holding_days', 5)),
-            # 'sharpe_ratio': ga_result.get('best_sharpe', 0.0),
-            # 'win_rate': ga_result.get('best_win_rate', 0.0) * 100,
-            # 'total_return': ga_result.get('best_return', 0.0) * 100,
-            # 'buyhold_sharpe': ga_result.get('buyhold_sharpe', 0.0),
-            # 'buyhold_return': ga_result.get('buyhold_return', 0.0) * 100,
         }
     except Exception as e:
         print(f"GA strategy error for {asset_name}: {e}")
+        #return safe deafult values so the dashboard dosent crash 
         return {
             'entry_threshold': 0.5,
             'stop_loss': 5.0,
@@ -173,6 +128,11 @@ def get_ga_strategy(asset_name):
             'buyhold_shapre': 0.0,
             'buyhold_return': 0.0
         }
+    
+#routes 
+
+#serves as the main dashboard HTML page. 
+
 
 @app.route('/')
 def index():
@@ -183,21 +143,22 @@ def index():
 def predict(asset_name):
     if asset_name not in ASSETS:
         return jsonify({'error': 'Invalid asset'}), 400
+    #select best model for this asset 
     try:
         model_name, model = get_best_model(asset_name)
-
+        #get the most recent feature row from preprocessed test set
         features, feature_names = get_latest_features(asset_name)
-
+        #retrieve the optimal classification threshold stores during training
         model_threshold = all_models[asset_name].get('optimal_thresholds', {}).get(model_name, 0.5)
-
+        #generate the predicted probability for thr UP class
         probability = model.predict_proba(features)[0,1]
         prediction = "UP" if probability >= model_threshold else "DOWN"
-
+        #compute shap values for the top 3 contributing features 
         shap_features = generate_shap_explanation(asset_name, model_name, model, features, feature_names)
-
+        #retrieve ga trategy 
         ga_strategy = get_ga_strategy(asset_name)
         display_threshold = ga_strategy['entry_threshold']
-
+        #retrieve stores test-set performance metrics for this model
         results = all_models[asset_name]['results'][model_name]
 
         response = {
@@ -303,6 +264,7 @@ def health():
         'ga_results_loaded': len(ga_results),
         'assets': ASSETS
     })
+#entry point
 
 if __name__ == '__main__':
     print("="*60)

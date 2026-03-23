@@ -15,6 +15,7 @@ sys.path.insert(0, str(project_root / "src"))
 
 from preprocessing import FinancialPreprocessor
 
+#path to the consolidated model results produced by train_models.py
 RESULTS_PATH = "results/all_assets_results_3d.pkl"
 
 def get_best_model(asset_results):
@@ -32,6 +33,9 @@ def generate_shap(asset_name, asset_results):
     
     print(f"\nGnerating SHAP for {asset_name}")
 
+
+#re-process the asset to get the test set in the correct scaled format
+#ensures shap recvies the same features representation as during training
     filepath = f"data/raw/{asset_name}.csv"
 
     preprocessor = FinancialPreprocessor()
@@ -39,17 +43,17 @@ def generate_shap(asset_name, asset_results):
 
     x_test = data["X_test"]
     feature_names = data["feature_names"]
-
+#select the best model and retrieve fitted object 
     model_name = get_best_model(asset_results)
     model = asset_results["models"][model_name]
 
     print(f"Using model: {model_name}")
-
+#treeexplainer computes exact SHAP values using the tree structure
     if model_name == "XGBoost":
         explainer = shap.TreeExplainer(model)
     else:
         explainer = shap.LinearExplainer(model, x_test)
-
+#shap values for all test samples
     shap_values = explainer(x_test)
 
     save_dir = f"results/figures/{asset_name}"
@@ -62,7 +66,7 @@ def generate_shap(asset_name, asset_results):
         feature_names=feature_names, 
         show=False
     )
-
+#save summary plot
     path = f"{save_dir}/shap_summary.png"
     plt.savefig(path, dpi=300, bbox_inches="tight")
     plt.close()

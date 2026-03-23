@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 import pickle
 import warnings
@@ -15,7 +15,13 @@ warnings.filterwarnings("ignore")
 
 @dataclass
 class Chromosome:
-    """A single trading strategy encoded as a gene array."""
+    """A single trading strategy encoded as a gene array.
+    Genes (indices and bounds)
+    gene[0] : entry_threshold - min model prob
+    gene[1] : stop_loss_pct - exit if postiton falls by this %
+    gene[2] : take_profit_pct - exit if position gains by %
+    gene[3] : holding_days - min days to hold postion 
+    """
     genes: np.ndarray
     fitness: float = -np.inf
     trades: int = 0
@@ -23,8 +29,10 @@ class Chromosome:
     total_return: float = 0.0
     max_drawdown: float = 0.0
 
+
     @property
     def entry_threshold(self) -> float:
+        "min model probablity required to enter long position"
         return float(np.clip(self.genes[0], 0.50, 0.90))
     
     @property
@@ -40,6 +48,7 @@ class Chromosome:
         return int(np.clip(round(self.genes[3]), 1, 10))
                    
     def describe(self) -> str:
+        "return human readable summary of this chromsome parameters"
         return (
             f"entry_threshold={self.entry_threshold:.2f} "
             f"stop_loss={self.stop_loss_pct*100:.1f}% "
@@ -458,12 +467,14 @@ class GATradingOptimiser:
                 data = preprocessed_data[asset_name]
                 X_test = data["X_test"]
                 test_dates = data["test_dates"]
-
+#load the raw csv to extract closing price for test period
+#align by date so price matches model test features
                 raw_df = pd.read_csv(f"data/raw/{asset_name}.csv")
                 raw_df['Date'] = pd.to_datetime(raw_df['Date'], errors='coerce')
                 raw_df = raw_df[['Date', 'Close']].dropna()
                 raw_df = raw_df.sort_values('Date')
 
+#filter raw prices to only the rows in the test date set
                 test_date_set = set(test_dates.values)
                 mask = raw_df['Date'].isin(test_date_set)
                 prices_test = raw_df.loc[mask, 'Close'].values.astype(float)
@@ -471,7 +482,7 @@ class GATradingOptimiser:
                 if len(prices_test) < 30:
                     print(f" Skipping {asset_name} - not enough test data ({len(prices_test)})")
                     continue
-
+                #run ga optimisation for this asset
                 result = self.optimise_asset(
                     asset_name=asset_name,
                     asset_results=asset_results,
@@ -482,6 +493,7 @@ class GATradingOptimiser:
 
                 ga_results[asset_name] = result
 
+                #generate equity curve plot using the best chromosome entry signals
                 model_name, probabilities = self._get_best_model_probabilities(asset_results, X_test)
                 signals = (probabilities >= result.best_chromosome.entry_threshold).astype(int)
 
@@ -499,6 +511,9 @@ class GATradingOptimiser:
         return ga_results
     
     #Plotting
+    #plot ga covergence: best and mean SHarpe ratio per generation with buy hold shapre ratio 
+    #ga result: result object from a completed GA run
+    #save_dir : str directory to save the plot
 
     def plot_convergence(
         self,
@@ -617,6 +632,7 @@ class GATradingOptimiser:
 
 #summary 
 
+#print a formated summary table of all GA results to the console
     def print_summary(self, ga_results: Dict[str, GAResult]):
         print(f"\n{'='*90}")
         print("GA OPTIMIZATION SUMMARY")
@@ -655,6 +671,8 @@ class GATradingOptimiser:
 if __name__ == "__main__":
     import sys
     from pathlib import Path
+
+    #add src to path for local module imports
     project_root = Path(__file__).resolve().parent.parent
     sys.path.insert(0, str(project_root/ 'src'))
     from preprocessing import FinancialPreprocessor
@@ -707,7 +725,7 @@ if __name__ == "__main__":
         verbose=True
     )
 
-    #save and plot results
+    #save and plot results and generate plots
     optimiser.save_results(ga_results)
     optimiser.plot_all(ga_results, save_dir="results/figures")
     optimiser.print_summary(ga_results)

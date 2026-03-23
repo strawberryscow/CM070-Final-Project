@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import ta
+import ta   #technical analysis lib
 from sklearn.preprocessing import StandardScaler
 import warnings
 from pathlib import Path
@@ -47,12 +47,14 @@ class FinancialPreprocessor:
         print("Engineering features...")
 
         # Technical indicators
+        #measures overbought and oversold
         df["RSI"] = ta.momentum.RSIIndicator(close, window=14).rsi()
 
         #EMAs
         df["EMA_20"] = close.ewm(span=20, adjust=False).mean()
         df["EMA_50"] = close.ewm(span=50, adjust=False).mean()
         df["EMA_200"] = close.ewm(span=200, adjust=False).mean()
+        #ema difference captures momentum direction
         df["EMA_diff"] = df["EMA_20"] - df["EMA_50"]
 
         # MACD

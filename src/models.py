@@ -21,7 +21,7 @@ class FinancialMLModels:
     def __init__(self, random_state=42):
         self.random_state = random_state
         self.models = {}
-        self.results = {}
+        self.results = {}               #model name : metric: dict
         self.optimal_thresholds = {}
         
         #logistic regression model
@@ -32,13 +32,14 @@ class FinancialMLModels:
         print("="*60)
 
         if tune_hyperparams:
+            #balanced class_weight adjusts for label 
             param_grid = {
                 'C': [0.001, 0.01, 0.1, 1, 10, 100],
                 'class_weight': ['balanced'],
                 'max_iter': [1000],
                 'solver': ['liblinear']
             }
-
+#time seriessplit preserves temporal order - folds do not shuffle 
             tscv = TimeSeriesSplit(n_splits=5)
 
             lr = LogisticRegression(random_state=self.random_state)
@@ -256,7 +257,7 @@ class FinancialMLModels:
         return results
         
     def compare_models(self):
-
+#side by side comparisom of all trained models and run a paried ttest on cross vbalidation f1 score
             if len(self.results) < 2:
                 print("At least two models are required for comparison.")
                 return
@@ -265,6 +266,7 @@ class FinancialMLModels:
             print("COMPARING MODELS")
             print("="*60)
 
+            #build comparison table
             compasrison_data = []
             for name, results in self.results.items():
                 compasrison_data.append({
